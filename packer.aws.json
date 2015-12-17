@@ -1,0 +1,22 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "ap-southeast-1",
+    "instance_type": "m3.medium",
+    "source_ami": "ami-17fb3d74",
+    "ami_name": "windows-ami-01",
+    "user_data_file": "bootstrap-aws.txt",
+    "communicator": "winrm",
+    "winrm_username": "Administrator",
+    "associate_public_ip_address": true,
+    "winrm_timeout": "4h",
+    "subnet_id": "subnet-25166940",
+    "security_group_id": "sg-836634e6"
+  }],
+  "provisioners": [{
+    "type": "powershell",
+    "scripts": [
+      "install-chef.ps1"
+    ]
+  }]
+}
